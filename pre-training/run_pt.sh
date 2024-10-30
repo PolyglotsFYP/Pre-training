@@ -16,7 +16,7 @@ gradient_accumulation_steps=8
 block_size=1024
 output_dir=output_dir
 
-torchrun --nnodes 1 --nproc_per_node 1 run_clm_pt_with_peft.py \
+torchrun --nnodes 1 --nproc_per_node 4 run_clm_pt_with_peft.py \
     --model_name_or_path ${pretrained_model} \
     --tokenizer_name_or_path ${tokenizer_name_or_path} \
     --dataset_dir ${dataset_dir} \
