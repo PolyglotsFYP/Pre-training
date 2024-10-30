@@ -8,9 +8,9 @@ lora_trainable="q_proj,v_proj,k_proj,o_proj,gate_proj,down_proj,up_proj"
 modules_to_save="embed_tokens,lm_head"
 lora_dropout=0.05
 
-pretrained_model="meta-llama/Llama-2-7b"
+pretrained_model="meta-llama/Meta-Llama-3-8B"
 tokenizer_name_or_path="polyglots/Extended-Sinhala-LLaMA"
-dataset_dir="polyglots/MADLAD_CulturaX_cleaned"
+dataset_dir="./"
 data_cache="temp_data_cache_dir"
 per_device_train_batch_size=1
 gradient_accumulation_steps=8
