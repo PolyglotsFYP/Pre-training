@@ -8,7 +8,7 @@ fi
 TOKEN=$1
 
 pip install -r requirements.txt
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 huggingface-cli login --token $TOKEN
 
