@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-
 lr=1e-4
 lora_rank=64
 lora_alpha=128
