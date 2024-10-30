@@ -1,6 +1,4 @@
 #!/bin/bash
-## 运行脚本前请仔细阅读wiki(https://github.com/ymcui/Chinese-LLaMA-Alpaca-3/wiki/pt_scripts_zh)
-## Read the wiki(https://github.com/ymcui/Chinese-LLaMA-Alpaca-3/wiki/pt_scripts_en) carefully before running the script
 lr=1e-4
 lora_rank=64
 lora_alpha=128
@@ -10,8 +8,8 @@ lora_dropout=0.05
 
 pretrained_model="meta-llama/Meta-Llama-3-8B"
 tokenizer_name_or_path="polyglots/Extended-Sinhala-LLaMA"
-dataset_dir="./"
-data_cache="temp_data_cache_dir"
+dataset_dir="./data"
+data_cache="./data/temp_data_cache_dir"
 per_device_train_batch_size=1
 gradient_accumulation_steps=8
 block_size=1024
