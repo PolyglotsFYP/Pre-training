@@ -12,4 +12,6 @@ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.o
 
 huggingface-cli login --token $TOKEN
 
+chmod +x ./pre-training/run_pt.sh
+
 ./pre-training/run_pt.sh
