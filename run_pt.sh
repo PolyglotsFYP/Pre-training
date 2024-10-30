@@ -14,4 +14,4 @@ huggingface-cli login --token $TOKEN
 
 chmod +x ./pre-training/run_pt.sh
 
-./pre-training/run_pt.sh
+cd pre-training && ./run_pt.sh
