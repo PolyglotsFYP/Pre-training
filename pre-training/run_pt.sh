@@ -11,9 +11,9 @@ pretrained_model="meta-llama/Meta-Llama-3-8B"
 tokenizer_name_or_path="polyglots/Extended-Sinhala-LLaMA"
 dataset_dir="./data"
 data_cache="./data/temp_data_cache_dir"
-per_device_train_batch_size=64
+per_device_train_batch_size=1
 gradient_accumulation_steps=8
-block_size=1024
+block_size=256
 output_dir=output_dir
 
 torchrun --nnodes 1 --nproc_per_node 4 run_clm_pt_with_peft.py \
