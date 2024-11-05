@@ -33,10 +33,10 @@ torchrun --nnodes 1 --nproc_per_node 4 run_clm_pt_with_peft.py \
     --warmup_ratio 0.05 \
     --weight_decay 0.01 \
     --logging_strategy steps \
-    --logging_steps 200 \
+    --logging_steps 500 \
     --save_strategy steps \
-    --save_total_limit 50 \
-    --save_steps 1000 \
+    --save_total_limit 3 \
+    --save_steps 50000 \
     --gradient_accumulation_steps ${gradient_accumulation_steps} \
     --preprocessing_num_workers 8 \
     --block_size ${block_size} \
