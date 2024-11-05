@@ -35,8 +35,8 @@ torchrun --nnodes 1 --nproc_per_node 4 run_clm_pt_with_peft.py \
     --logging_strategy steps \
     --logging_steps 200 \
     --save_strategy steps \
-    --save_total_limit 3 \
-    --save_steps 20000 \
+    --save_total_limit 50 \
+    --save_steps 1000 \
     --gradient_accumulation_steps ${gradient_accumulation_steps} \
     --preprocessing_num_workers 8 \
     --block_size ${block_size} \
