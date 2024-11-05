@@ -12,7 +12,7 @@ tokenizer_name_or_path="polyglots/Extended-Sinhala-LLaMA"
 dataset_dir="./data"
 data_cache="./data/temp_data_cache_dir"
 per_device_train_batch_size=1
-gradient_accumulation_steps=4
+gradient_accumulation_steps=8
 block_size=512
 output_dir=output_dir
 
