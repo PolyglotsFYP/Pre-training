@@ -5,12 +5,12 @@ import torch
 MODEL_NAME = "polyglots/LLaMA-Continual-Checkpoint-73456"
 
 # Load the tokenizer
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, resize_model_vocab =139336)
 
 # Load the model for text generation
 try:
     # Load the model with ignore_mismatched_sizes argument
-    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, ignore_mismatched_sizes=True)
+    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, resize_model_vocab =139336)
 except RuntimeError as e:
     print("Error loading model:", e)
     print("Model and checkpoint might have incompatible configurations.")
