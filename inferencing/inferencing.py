@@ -16,7 +16,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 FastLanguageModel.for_inference(model)
 
 # Define a simple inference function
-def generate_text(prompt, max_new_tokens=64):
+def generate_text(prompt, max_new_tokens=512):
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
     output = model.generate(
         **inputs,
