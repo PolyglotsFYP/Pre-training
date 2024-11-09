@@ -1,37 +1,34 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from unsloth import FastLanguageModel
 import torch
 
-# Step 1: Load the model and tokenizer from Hugging Face
-MODEL_NAME = "polyglots/LLaMA-Continual-Checkpoint-73456"
+# Load the model and tokenizer for inference
+model_name = "polyglots/LLaMA-Continual-Checkpoint-73456"  # Replace with the actual model name or path
+max_seq_length = 512 # Example sequence length, adjust as needed
+dtype = torch.float16  # Use float16 for efficient computation
+load_in_4bit = True  # Load model in 4-bit precision for memory efficiency
 
-# Load the tokenizer
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, resize_model_vocab =139336)
+# Initialize model and tokenizer
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name=model_name,
+    max_seq_length=max_seq_length,
+    dtype=dtype,
+    load_in_4bit=load_in_4bit,
+    resize_model_vocab = 139336
+)
 
-# Load the model for text generation
-try:
-    # Load the model with ignore_mismatched_sizes argument
-    model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, resize_model_vocab =139336)
-except RuntimeError as e:
-    print("Error loading model:", e)
-    print("Model and checkpoint might have incompatible configurations.")
+# Enable faster inference
+FastLanguageModel.for_inference(model)
 
-# Ensure model is in evaluation mode
-model.eval()
+# Define a simple inference function
+def generate_text(prompt, max_new_tokens=64):
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    output = model.generate(
+        **inputs,
+        max_new_tokens=max_new_tokens
+    )
+    return tokenizer.decode(output[0], skip_special_tokens=True)
 
-# Optional: Use GPU if available
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model.to(device)
-
-# Step 2: Define a function for inference
-def generate_text(prompt):
-    inputs = tokenizer(prompt, return_tensors="pt").to(device)
-    # Generate text (adjust max_length, temperature, etc., as needed)
-    outputs = model.generate(inputs.input_ids, max_length=50, num_return_sequences=1, temperature=0.7)
-    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    return generated_text
-
-# Step 3: Run inference
-# Example input (replace with your own text prompt)
+# Example usage
 prompt = "Once upon a time"
 generated_text = generate_text(prompt)
 print("Generated Text:", generated_text)
