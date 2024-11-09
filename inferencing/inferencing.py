@@ -29,6 +29,6 @@ def generate_text(prompt, max_new_tokens=64):
     return tokenizer.decode(output[0], skip_special_tokens=True)
 
 # Example usage
-prompt = "Once upon a time"
+prompt = "අපි කාටත් ජීවිතයේ ඇති"
 generated_text = generate_text(prompt)
 print("Generated Text:", generated_text)
