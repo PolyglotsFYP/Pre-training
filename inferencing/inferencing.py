@@ -2,7 +2,7 @@ from unsloth import FastLanguageModel
 import torch
 
 # Load the model and tokenizer for inference
-model_name = "meta-llama/Meta-Llama-3-8B"  # Replace with the actual model name or path
+model_name = "polyglots/LLaMA-Continual-Checkpoint-73456"  # Replace with the actual model name or path
 dtype = torch.float16  # Use float16 for efficient computation
 
 # Initialize model and tokenizer
