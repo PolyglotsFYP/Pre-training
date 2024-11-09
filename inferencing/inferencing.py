@@ -2,7 +2,7 @@ from unsloth import FastLanguageModel
 import torch
 
 # Load the model and tokenizer for inference
-model_name = "polyglots/LLaMA-Continual-Checkpoint-73456"  # Replace with the actual model name or path
+model_name = "unsloth/llama-3-8b"  # Replace with the actual model name or path
 max_seq_length = 512 # Example sequence length, adjust as needed
 dtype = torch.float16  # Use float16 for efficient computation
 load_in_4bit = True  # Load model in 4-bit precision for memory efficiency
