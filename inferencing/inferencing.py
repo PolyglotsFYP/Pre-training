@@ -9,7 +9,8 @@ dtype = torch.float16  # Use float16 for efficient computation
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name=model_name,
     dtype=dtype,
-    resize_model_vocab = 139336
+    resize_model_vocab = 139336,
+    mean_resizing=False
 )
 
 # Enable faster inference
