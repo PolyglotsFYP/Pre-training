@@ -7,14 +7,14 @@ model_name = "polyglots/LLaMA-Continual-Checkpoint-73456"
 tokenizer_name = "polyglots/Extended-Sinhala-LLaMA"
 dtype = torch.float16
 
+tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
+
 # Load model and tokenizer
 model = FastLanguageModel.from_pretrained(
     model_name=model_name,
-    dtype=dtype
+    dtype=dtype,
+    resize_model_vocab=139336 
 ).half()  # Convert model to half precision for faster inference if supported
-
-# Load the tokenizer using AutoTokenizer for compatibility
-tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
 
 # Move model to appropriate device (CPU or GPU if available)
 device = "cuda" if torch.cuda.is_available() else "cpu"
