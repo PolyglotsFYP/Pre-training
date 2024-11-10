@@ -13,8 +13,8 @@ tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
 model = FastLanguageModel.from_pretrained(
     model_name=model_name,
     dtype=dtype,
-    resize_model_vocab=139336 
-).half()  # Convert model to half precision for faster inference if supported
+    resize_model_vocab=139336
+)
 
 # Move model to appropriate device (CPU or GPU if available)
 device = "cuda" if torch.cuda.is_available() else "cpu"
