@@ -1,12 +1,12 @@
 import torch
-from transformers import LlamaForCausalLM, LlamaTokenizer
+from transformers import LlamaForCausalLM, PreTrainedTokenizerFast
 
 # Configuration for paths
 base_model_path = "polyglots/LLaMA-Continual-Checkpoint-73456"  # Replace with your model path
 tokenizer_path = "polyglots/Extended-Sinhala-LLaMA"
 
 # Load model and tokenizer
-tokenizer = LlamaTokenizer.from_pretrained(tokenizer_path)
+tokenizer = PreTrainedTokenizerFast.from_pretrained(tokenizer_path)
 model = LlamaForCausalLM.from_pretrained(base_model_path, torch_dtype=torch.float16, device_map="auto")
 model.eval()
 
