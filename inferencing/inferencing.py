@@ -1,24 +1,29 @@
 from unsloth import FastLanguageModel
+from transformers import AutoTokenizer  # Ensure you have this imported if using it
 import torch
 
-# Load the model and tokenizer for inference
-model_name = "polyglots/LLaMA-Continual-Checkpoint-73456"  # Replace with the actual model name or path
-dtype = torch.float16  # Use float16 for efficient computation
+# Model and tokenizer paths
+model_name = "polyglots/LLaMA-Continual-Checkpoint-73456"
+tokenizer_name = "polyglots/Extended-Sinhala-LLaMA"
+dtype = torch.float16
 
-# Initialize model and tokenizer
-model, tokenizer = FastLanguageModel.from_pretrained(
+# Load model and tokenizer
+model = FastLanguageModel.from_pretrained(
     model_name=model_name,
-    dtype=dtype,
-    resize_model_vocab = 139336,
-    mean_resizing=False
-)
+    dtype=dtype
+).half()  # Convert model to half precision for faster inference if supported
 
-# Enable faster inference
-FastLanguageModel.for_inference(model)
+# Load the tokenizer using AutoTokenizer for compatibility
+tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
 
-# Define a simple inference function
+# Move model to appropriate device (CPU or GPU if available)
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model.to(device)
+
+# Define an inference function
 def generate_text(prompt, max_new_tokens=512):
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+    # Generate text
     output = model.generate(
         **inputs,
         max_new_tokens=max_new_tokens
